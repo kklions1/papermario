@@ -444,7 +444,13 @@ INCLUDE_ASM(s32, "28910_len_5090", func_80050568);
 
 INCLUDE_ASM(s32, "28910_len_5090", func_800505E4);
 
-INCLUDE_ASM(s32, "28910_len_5090", func_80050654);
+u8 func_80050654(s32 arg0, u8 arg1, u8 arg2) {
+    s32 v0 = ((arg0 >> 8) & 0x1F) + (arg0 & 0xE0);
+
+    return ((arg1) * (0x8000 - ((arg2) * v0)));
+}
+
+// INCLUDE_ASM(s32, "28910_len_5090", func_80050654);
 
 INCLUDE_ASM(s32, "28910_len_5090", func_8005068C);
 
