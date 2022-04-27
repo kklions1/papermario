@@ -77,7 +77,206 @@ INCLUDE_ASM(s32, "28910_len_5090", func_8004DB4C);
 
 INCLUDE_ASM(s32, "28910_len_5090", func_8004DC80);
 
-INCLUDE_ASM(s32, "28910_len_5090", func_8004DCB8);
+/*
+? func_80050900(BGMPlayer *);
+void *func_80053F64(s32);
+
+u32 func_8004DCB8(void *arg0, s32 arg1) {
+    BGMPlayer *temp_s0;
+    s32 temp_s1;
+    s32 temp_s4;
+    u32 temp_a3;
+    u32 temp_v1_2;
+    u8 temp_a0;
+    u8 temp_v1;
+    void *temp_a1;
+    void *temp_t0;
+    s32 phi_a2;
+    u8 phi_v1;
+    u32 phi_a3;
+    s32 phi_a1;
+    u32 phi_v0;
+    u32 phi_s3;
+
+    temp_s1 = arg0->unk0;
+    temp_s4 = arg0->unk10;
+    phi_s3 = 0U;
+    if (temp_s1 != 0) {
+        temp_s0 = snd_get_player_with_song_name(temp_s1);
+        if (temp_s0 == 0) {
+            phi_s3 = 2U;
+            goto block_22;
+        }
+        if (arg0->unk14 == 0) {
+            temp_t0 = func_80053F64(temp_s4);
+            if (temp_t0 == 0) {
+                phi_s3 = 4U;
+                goto block_22;
+            }
+            phi_v0 = 0U;
+            if (temp_s1 == temp_s0->songName) {
+                phi_a1 = temp_s4 * 8;
+                if (arg1 == 0) {
+                    phi_a2 = 0x25C;
+                    phi_a3 = 0U;
+                    do {
+                        temp_a1 = temp_s0 + phi_a2;
+                        if (temp_a1->unk0 != 0) {
+                            temp_v1 = temp_a1->unk52;
+                            temp_a0 = temp_a1->unk53;
+                            phi_v1 = temp_v1;
+                            if ((u32) temp_v1 < (u32) temp_a0) {
+                                do {
+                                    temp_v1_2 = phi_v1 + 1;
+                                    temp_a1->unk40 = 0;
+                                    phi_v1 = (u8) temp_v1_2;
+                                } while (temp_v1_2 < (u32) temp_a0);
+                            }
+                        }
+                        temp_a3 = phi_a3 + 1;
+                        phi_a2 += 0x60;
+                        phi_a3 = temp_a3;
+                    } while (temp_a3 < 0x10U);
+                    phi_a1 = temp_s4 * 8;
+                }
+                (temp_s0->data + phi_a1)->unk71 = (u8) temp_s0->unk_234;
+                (temp_s0->data + phi_a1)->unk70 = 1;
+                temp_s0->fadeSongName = 0;
+                snd_copy_words(temp_s0, temp_t0, 0xA9C);
+                phi_v0 = 0U;
+                if (arg1 == 0) {
+                    func_8004DAA8(temp_s0);
+                    return 0U;
+                }
+                // Duplicate return node #23. Try simplifying control flow for better match
+                return phi_v0;
+            }
+            // Duplicate return node #23. Try simplifying control flow for better match
+            return phi_v0;
+        }
+        phi_v0 = 0U;
+        if (temp_s1 == temp_s0->songName) {
+            if (temp_s0->unk_221 != 0) {
+                temp_s0->unk_220 = 1;
+                func_80050900(temp_s0);
+                return 0U;
+            }
+            goto block_22;
+        }
+        // Duplicate return node #23. Try simplifying control flow for better match
+        return phi_v0;
+    }
+    phi_s3 = 3U;
+block_22:
+    phi_v0 = phi_s3;
+    return phi_v0;
+}
+
+*/
+
+void func_80050900(BGMPlayer*);                       /* extern */
+void* func_80053F64(s32);                           /* extern */
+
+typedef struct unk_80044DCB8 {
+    /* 0x00 */ s32 unk0;
+    /* 0x04 */ char unk_04[0x0C];
+    /* 0x10 */ s32 unk10;
+    /* 0x14 */ s32 unk14;
+
+} unk_80044DCB8;
+
+u32 func_8004DCB8(unk_80044DCB8* arg0, s32 arg1) {
+    BGMPlayer* temp_s0;
+    s32 temp_s1, temp_s4;
+    u32 temp_a3, temp_v1_2;
+    u8 temp_a0, temp_v1;
+    UiStatus* temp_a1;
+    BGMPlayer* temp_t0;
+    s32 phi_a2;
+    u8 phi_v1;
+    u32 phi_a3, phi_v0, phi_s3;
+    s32 phi_a1;
+
+    temp_s1 = arg0->unk0;
+    temp_s4 = arg0->unk10;
+    phi_s3 = 0U;
+    if (temp_s1 != 0) {
+        temp_s0 = snd_get_player_with_song_name(temp_s1);
+        if (temp_s0 == 0) {
+            phi_s3 = 2;
+            phi_v0 = phi_s3;
+            return phi_v0;
+        }
+        if (arg0->unk14 == 0) {
+            temp_t0 = func_80053F64(temp_s4);
+            if (temp_t0 == NULL) {
+                phi_s3 = 4;
+                phi_v0 = phi_s3;
+                return phi_v0;
+            }
+            phi_v0 = 0;
+            if (temp_s1 == temp_s0->songName) {
+                phi_a1 = temp_s4 * 8;
+                if (arg1 == 0) {
+                    phi_a2 = 0x25C;
+                    phi_a3 = 0U;
+                    do {
+                        temp_a1 = (s32) temp_s0 + phi_a2;
+                        // temp_a1 = temp_s0->unk_25C[];
+                        if (temp_a1->hpIconIndices[0] != NULL) { // do we need an index on this array? just the pointer?
+                            temp_v1 = temp_a1->starpointsBlinking;
+                            temp_a0 = temp_a1->starpointsBlinkCounter;
+                            phi_v1 = temp_v1;
+                            if ((u32) temp_v1 < (u32) temp_a0) { // does removing this cast change anything on the assembly?
+                                do {
+                                    temp_v1_2 = phi_v1 + 1;
+                                    temp_a1->displayCoins = 0;
+                                    phi_v1 = (u8) temp_v1_2;
+                                } while (temp_v1_2 < (u32) temp_a0);
+                            }
+                        }
+                        temp_a3 = phi_a3 + 1;
+                        phi_a2 += 0x60;
+                        phi_a3 = temp_a3;
+                    } while (temp_a3 < 0x10U);
+                    phi_a1 = temp_s4 * 8;
+                }
+
+                // (data + phi_a1)->unk71 = temp_s0->unk_234;
+                temp_s0->data->unk_6C[phi_a1].unk_5 = temp_s0->unk_234;
+                // (data + phi_a1)->unk70 = 1;
+                temp_s0->data->unk_6C[phi_a1].unk_4 = 1;
+                temp_s0->fadeSongName = 0;
+                snd_copy_words(temp_s0, temp_t0, 0xA9C);
+                phi_v0 = 0U;
+                if (arg1 == 0) {
+                    func_8004DAA8(temp_s0);
+                    return 0U;
+                }
+                /* Duplicate return node #23. Try simplifying control flow for better match */
+                return phi_v0;
+            }
+            /* Duplicate return node #23. Try simplifying control flow for better match */
+            return phi_v0;
+        }
+        phi_v0 = 0U;
+        if (temp_s1 == temp_s0->songName) {
+            if (temp_s0->unk_221 != 0) {
+                temp_s0->unk_220 = 1;
+                func_80050900(temp_s0);
+                return 0;
+            }
+            phi_v0 = phi_s3;
+        }
+        /* Duplicate return node #23. Try simplifying control flow for better match */
+        return phi_v0;
+    }
+    phi_s3 = 3U;
+    phi_v0 = phi_s3;
+    return phi_v0;
+}
+
+// INCLUDE_ASM(s32, "28910_len_5090", func_8004DCB8);
 
 INCLUDE_ASM(s32, "28910_len_5090", func_8004DE2C);
 
